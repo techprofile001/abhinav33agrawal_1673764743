@@ -1,0 +1,14 @@
+In=lambda:map(int,raw_input().split())
+n,k=In()
+a=zip(In(),In())
+N=11000
+f,g=[0]*N,[0]*N
+def work(f,x):
+    for j in range(N-x)[::-1]:
+        if (f[j]!=0)or(j==0):f[j+x]=max(f[j+x],f[j]+y)
+for i in a:
+    x,y=i[0]-k*i[1],i[1]
+    if x>=0:work(f,x)
+    else:work(g,-x)
+ans=max([f[i]+g[i] for i in range(N) if f[i]*g[i]>0]+[f[0]])
+print k*ans if ans>0 else -1
